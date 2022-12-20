@@ -24,13 +24,14 @@
 
 .link-wrapper {
     display: inline-block;
-    padding: 0.3rem 0.8rem;
     border-radius: 5px;
     background: #4d6569;
     width: fit-content;
 }
 
 .back-link {
+    display: inline-block;
     color: #f0d3c1;
+    padding: 0.3rem 0.8rem;
     text-decoration: none;
 }

@@ -12,7 +12,7 @@ const GlossaryPage: React.FC = () => {
     return (
         <ul className="glossary">
             {data && Object.keys(data).map(term => (<li className="term">
-                <Link key={term} to={`/description/${term}`} className="link">{term}</Link>
+                <Link key={term} to={`/description/${term}`} className="link">{data[term].title}</Link>
             </li>))}
         </ul>
     );
