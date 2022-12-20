@@ -1,0 +1,35 @@
+#root {
+  height: 100%;
+}
+
+.App {
+  background: #fefefe;
+  height: 100%;
+  display: flex;
+  overflow: auto;
+  flex-direction: column;
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  background: #4d6569;
+  padding: 1rem 1.5rem;
+}
+
+.title {
+  font-size: 3rem;
+  color: #f0d3c1;
+  margin: 0 1rem 0 0;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: rgba(240, 211, 193, 0.6);
+}
+
+.container {
+  padding: 2rem 5%;
+  flex: 1 0;
+}

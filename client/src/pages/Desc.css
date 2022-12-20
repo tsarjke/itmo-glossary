@@ -1,0 +1,36 @@
+.term-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.term-title {
+    font-size: 2rem;
+    color: #4d6569;
+}
+
+.term-title:first-letter {
+    text-transform: capitalize;
+}
+
+.term-desc {
+    font-size: 1.2rem;
+    color: #4d6569;
+}
+
+.term-desc:first-letter {
+    text-transform: capitalize;
+}
+
+.link-wrapper {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    border-radius: 5px;
+    background: #4d6569;
+    width: fit-content;
+}
+
+.back-link {
+    color: #f0d3c1;
+    text-decoration: none;
+}

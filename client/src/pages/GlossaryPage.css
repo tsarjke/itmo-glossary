@@ -1,0 +1,14 @@
+.glossary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+
+.term {
+    font-size: 1.5rem;
+    width: 25%;
+}
+
+.link {
+    color: #c06471;
+}
