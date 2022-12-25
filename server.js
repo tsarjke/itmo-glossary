@@ -4,6 +4,7 @@ const https = require('https');
 const url = require('url');
 
 let dictionary = null;
+let mindmap = null;
 
 const dictionaryHandler = (request, response) => {
     const u = url.parse(request.url);
@@ -21,6 +22,11 @@ const dictionaryHandler = (request, response) => {
         response.setHeader('Content-Type', 'application/json');
         response.writeHead(200);
         response.end(JSON.stringify(dictionary));
+        return;
+    } else if (u.pathname == '/mindmap') {
+        response.setHeader('Content-Type', 'application/json');
+        response.writeHead(200);
+        response.end(JSON.stringify(mindmap));
         return;
     }
 
@@ -40,13 +46,13 @@ const dictionaryHandler = (request, response) => {
     response.end(JSON.stringify(defObj));
 }
 
-const downloadDictionary = (url, file, callback) => {
+const downloadFile = (url, file, callback) => {
   const stream = fs.createWriteStream(file);
   const req = https.get(url, function(res) {
     res.pipe(stream);
     stream.on('finish', function() {
       stream.close(callback);
-      console.log('dictionary downloaded');
+      console.log('file downloaded');
     });
   }).on('error', function(err) {
     fs.unlink(file);
@@ -67,7 +73,20 @@ const loadDictionary = (file, callback) => {
     })
 };
 
-downloadDictionary('https://raw.githubusercontent.com/tsarjke/itmo-glossary/main/dictionary.json', 'dictionary.json', (err) => {
+const loadMindmap = (file, callback) => {
+    fs.readFile(file, (err, data) => {
+        if (err) {
+            console.log(err);
+            callback(err);
+            return;
+        }
+        mindmap = JSON.parse(data);
+        console.log('mindmap loaded.');
+        callback();
+    })
+};
+
+downloadFile('https://raw.githubusercontent.com/tsarjke/itmo-glossary/main/dictionary.json', 'dictionary.json', (err) => {
     if (err) {
         console.log(err);
         return;
@@ -77,8 +96,22 @@ downloadDictionary('https://raw.githubusercontent.com/tsarjke/itmo-glossary/main
             console.log(err);
             return;
         }
-        console.log('ready to serve');
-    });
+        console.log('dictionary is ready to serve');
+    }, 'dictionary');
+});
+
+downloadFile('https://raw.githubusercontent.com/tsarjke/itmo-glossary/main/mindmap.json', 'mindmap.json', (err) => {
+    if (err) {
+        console.log(err);
+        return;
+    }
+    loadMindmap('mindmap.json', (err) => {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        console.log('mindmap is ready to serve');
+    }, 'mindmap');
 });
 
 const server = http.createServer(dictionaryHandler);

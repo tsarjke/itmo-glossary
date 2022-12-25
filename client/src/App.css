@@ -29,6 +29,10 @@
   color: rgba(240, 211, 193, 0.6);
 }
 
+.name {
+  margin: 0 10px 0 0;
+}
+
 .container {
   padding: 2rem 5%;
   flex: 1 0;

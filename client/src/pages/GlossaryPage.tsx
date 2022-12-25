@@ -11,8 +11,8 @@ const GlossaryPage: React.FC = () => {
 
     return (
         <ul className="glossary">
-            {data && Object.keys(data).map(term => (<li className="term">
-                <Link key={term} to={`/description/${term}`} className="link">{data[term].title}</Link>
+            {data && Object.keys(data).map(term => (<li key={term} className="term">
+                <Link to={`/description/${term}`} className="link">{data[term].title}</Link>
             </li>))}
         </ul>
     );
