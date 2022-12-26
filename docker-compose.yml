@@ -1,5 +1,19 @@
-FROM node:7.5-slim
+version: '3'
 
-COPY server.js /server.js
+services:
 
-CMD node /server.js
+  server:
+    build:
+      context: ./
+    ports:
+      - "8080:8080"
+    container_name: server
+
+  client:
+    build:
+      context: ./client
+    ports:
+      - "3000:3000"
+    container_name: client
+    depends_on:
+      - server
